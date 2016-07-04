@@ -16,7 +16,48 @@ const ROMAN_GLYPHS = [
 
 class RomanNumeralConverter {
   convert(value) {
-
+    if (typeof value === "string") {
+      return this.convertToRoman(value);
+    }
+    return this.convertToArabic(value);
+  }
+  convertToRoman(value) {
+    if (value.indexOf('-')===0) {
+      return -this.convertToPositiveRoman(value.replace(/^\-/, ''))
+    }
+    return this.convertToPositiveRoman(value)
+  }
+  convertToPositiveRoman(value) {
+    let result = 0;
+    while (value) {
+      ROMAN_GLYPHS.forEach(([num, glyph]) => {
+        const reg = new RegExp(`^${glyph}`, 'g');
+        if (reg.test(value)) {
+          value = value.replace(reg, '')
+          result += num
+        }
+      });
+    }
+    return result
+  }
+  convertToArabic(value) {
+    if (value>3999) {
+      throw new Error('Cannot convert numbers greater than 3999')
+    }
+    if (value<0) {
+      return '-'+this.convertToPositiveArabic(Math.abs(value))
+    }
+    return this.convertToPositiveArabic(value)
+  }
+  convertToPositiveArabic(value) {
+    let result = "";
+    ROMAN_GLYPHS.forEach(([limit, glyph]) => {
+      while (value>=limit) {
+        result += glyph
+        value -= limit
+      }
+    })
+    return result
   }
 }
 export default RomanNumeralConverter
