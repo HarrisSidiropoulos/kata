@@ -11,11 +11,13 @@ describe('RomanNumerals', () => {
     it('should be an object', ()=> {
       expect(converter).to.be.an('object');
     })
-    it('convert should not be undefined', ()=> {
-      expect(converter.convert).to.not.be.an('undefined');
-    });
-    it('convert should be a function', ()=> {
-      expect(converter.convert).to.be.a('function');
+    describe('method convert', () => {
+      it('should not be undefined', ()=> {
+        expect(converter.convert).to.not.be.an('undefined');
+      });
+      it('should be a function', ()=> {
+        expect(converter.convert).to.be.a('function');
+      });
     });
   });
   describe('convert from arabic to roman', () => {
