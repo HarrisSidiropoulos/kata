@@ -16,48 +16,56 @@ const ROMAN_GLYPHS = [
 
 class RomanNumeralConverter {
   convert(value) {
-    if (typeof value === "string") {
-      return this.convertToRoman(value);
+    if (typeof value === 'string') {
+      return this.convertRomanToArabic(value);
     }
-    return this.convertToArabic(value);
+    return this.convertArabicToRoman(value);
   }
-  convertToRoman(value) {
+  convertRomanToArabic(value) {
     if (value.indexOf('-')===0) {
-      return -this.convertToPositiveRoman(value.replace(/^\-/, ''))
+        return -this.convertRomanToPositiveArabic(value.replace(/^\-/, ''))
     }
-    return this.convertToPositiveRoman(value)
+    return this.convertRomanToPositiveArabic(value)
   }
-  convertToPositiveRoman(value) {
+  convertRomanToPositiveArabic(value) {
+    if(!this.isRomanNumber(value)) {
+      throw new Error(`Could not convert ${value}. Value is not a Roman Number`);
+    }
     let result = 0;
-    while (value) {
-      ROMAN_GLYPHS.forEach(([num, glyph]) => {
-        const reg = new RegExp(`^${glyph}`, 'g');
+    while(value) {
+      ROMAN_GLYPHS.forEach(([num, glyph])=> {
+        const reg = new RegExp(`^${glyph}`);
         if (reg.test(value)) {
           value = value.replace(reg, '')
-          result += num
+          result += num;
         }
       });
     }
-    return result
+    return result;
   }
-  convertToArabic(value) {
+  convertArabicToRoman(value) {
     if (value>3999) {
-      throw new Error('Cannot convert numbers greater than 3999')
+      throw new Error(`Can not convert values greater than 3999`);
     }
     if (value<0) {
-      return '-'+this.convertToPositiveArabic(Math.abs(value))
+      return '-'+this.convertArabicToPositiveRoman(Math.abs(value));
     }
-    return this.convertToPositiveArabic(value)
+    return this.convertArabicToPositiveRoman(value);
   }
-  convertToPositiveArabic(value) {
+  convertArabicToPositiveRoman(value) {
     let result = "";
-    ROMAN_GLYPHS.forEach(([limit, glyph]) => {
-      while (value>=limit) {
-        result += glyph
-        value -= limit
+    ROMAN_GLYPHS.forEach(([num, glyph])=> {
+      while (value>=num) {
+        result += glyph;
+        value -= num;
       }
     })
-    return result
+    return result;
+  }
+  isRomanNumber(value) {
+    const characters = value.split('');
+    const GLYPHS = ROMAN_GLYPHS.map(([num,glyph])=>glyph);
+    return characters.every((char)=> GLYPHS.indexOf(char)>=0);
   }
 }
 export default RomanNumeralConverter

@@ -147,5 +147,8 @@ describe('RomanNumerals', () => {
     it('should convert -MMXIII to -2013', ()=> {
       expect(converter.convert('-MMXIII')).to.eql(-2013);
     });
+    it('should throw error if value is not a Roman Number', ()=> {
+      expect(() => converter.convert('AA')).to.throw(Error);
+    });
   });
 });
