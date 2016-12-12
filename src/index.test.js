@@ -156,5 +156,8 @@ describe('RomanNumerals', () => {
     it('should throw error if value is not a Roman Number', ()=> {
       expect(() => converter.convert('AA')).to.throw(Error);
     });
+    it('should throw error if value contains a non Roman Number', ()=> {
+      expect(() => converter.convert('MMAX')).to.throw(Error);
+    });
   });
 });

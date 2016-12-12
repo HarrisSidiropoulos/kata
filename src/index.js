@@ -78,7 +78,8 @@ class RomanNumeralConverter {
     return result;
   }
   isRomanGlyph(value) {
-    return new RegExp(`([${ROMAN_GLYPHS.map(([num,glyph])=>glyph).join('')}])`).test(value) || value===''
+    const glyphs = ROMAN_GLYPHS.map(([num,glyph])=>glyph).join('')
+    return value.split('').every(char=>glyphs.indexOf(char)>=0) || value===''
   }
 }
 export default RomanNumeralConverter
