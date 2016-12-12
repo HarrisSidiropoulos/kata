@@ -25,7 +25,7 @@ class RomanNumeralConverter {
     } else {
       const result = this.convertArabicToRoman(Math.abs(value));
       if (value<0) {
-        return -result;
+        return '-'+result;
       }
       return result;
     }

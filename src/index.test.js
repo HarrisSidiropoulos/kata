@@ -84,6 +84,9 @@ describe('RomanNumerals', () => {
     it('should convert 3999 to MMMCMXCIX', ()=> {
       expect(converter.convert(3999)).to.be.equal('MMMCMXCIX');
     });
+    it('should convert -3999 to -MMMCMXCIX', ()=> {
+      expect(converter.convert(-3999)).to.be.equal('-MMMCMXCIX');
+    });
     it('should throw error if value larger than 3999', ()=> {
       expect(() => converter.convert(4000)).to.throw(Error);
     });
