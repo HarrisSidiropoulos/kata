@@ -66,6 +66,9 @@ describe('RomanNumerals', () => {
     it('should convert 1000 to M', ()=>{
       expect(converter.convert(1000)).to.be.equal('M')
     })
+    it('should convert -1000 to -M', ()=>{
+      expect(converter.convert(-1000)).to.be.equal('-M')
+    })
     it('should throw Error if value is greater than 3999', ()=>{
       expect(()=>converter.convert(4000)).to.throw(Error)
     })
