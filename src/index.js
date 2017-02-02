@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign,no-console,no-loop-func,no-unused-vars */
 const ROMAN_GLYPHS = [
   [1000, 'M',],
   [900, 'CM',],
