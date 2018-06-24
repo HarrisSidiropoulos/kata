@@ -1,4 +1,4 @@
-# kata
+# Roman numeral converter (kata)
 
 1. Add a method to Class `RomanNumeralConverter` that takes a Roman numeral as its argument and returns its value as a numeric decimal integer.
 2. Add a mathod to Class `RomanNumeralConverter` taking a positive integer as its parameter and returning a string containing the Roman Numeral representation of that integer.
