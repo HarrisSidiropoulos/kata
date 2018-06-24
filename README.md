@@ -4,7 +4,7 @@ Create a RomanNumerals helper that can convert a roman numeral to and from an in
 
 1. (`toRoman` method) Takes a positive integer as its parameter and returning a string containing the Roman Numeral representation of that integer.
 2. (`toArabic` method) Takes a Roman numeral as its argument and returns its value as a numeric decimal integer.
-3. (`convert` method) Takes a value that can convert a roman numeral to an integer value or an arabic numeral to roman value.
+3. (`convert` method) Takes a value that can convert a Roman numeral to an integer value or an arabic numeral to roman value.
 
 it should throw an error if value is not a Roman or arabic numeral or value is less than one or value is greater than 3999.
 
