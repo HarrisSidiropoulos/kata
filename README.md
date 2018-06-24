@@ -2,8 +2,8 @@
 
 Create a RomanNumerals helper that can convert a roman numeral to and from an integer value.
 
-1. (convertRomanToArabic method) Takes a Roman numeral as its argument and returns its value as a numeric decimal integer.
-2. (convertArabicToRoman method) Takes a positive integer as its parameter and returning a string containing the Roman Numeral representation of that integer.
+1. (convertArabicToRoman method) Takes a positive integer as its parameter and returning a string containing the Roman Numeral representation of that integer.
+2. (convertRomanToArabic method) Takes a Roman numeral as its argument and returns its value as a numeric decimal integer.
 3. (convert method) Takes a value that can convert a roman numeral to and from an integer value.
 
 Value must be less than 4000.
