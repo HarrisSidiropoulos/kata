@@ -1,5 +1,5 @@
 import { expect, } from 'chai';
-import RomanNumeralConverter from './index';
+import RomanNumeralConverter, { NOT_A_VALID_ROMAN_GLYPH, NOT_A_VALID_ROMAN_NUMBER } from './index';
 
 describe('RomanNumerals', () => {
   const converter = new RomanNumeralConverter();
@@ -20,11 +20,37 @@ describe('RomanNumerals', () => {
       });
     });
   });
+
   describe('convert from arabic to roman', () => {
-    
+    it('convert from arabic to roman', () => {
+      expect(converter.convert(1)).to.be.equal('I');
+      expect(converter.convert(2)).to.be.equal('II');
+      expect(converter.convert(4)).to.be.equal('IV');
+      expect(converter.convert(5)).to.be.equal('V');
+      expect(converter.convert(9)).to.be.equal('IX');
+      expect(converter.convert(10)).to.be.equal('X');
+      expect(converter.convert(2018)).to.be.equal('MMXVIII');
+      expect(converter.convert(3999)).to.be.equal('MMMCMXCIX');
+      expect(() => converter.convert(-1)).to.throw(NOT_A_VALID_ROMAN_NUMBER);
+      expect(() => converter.convert(0)).to.throw(NOT_A_VALID_ROMAN_NUMBER);
+      expect(() => converter.convert(4000)).to.throw(NOT_A_VALID_ROMAN_NUMBER);
+    });
   });
 
   describe('convert from roman to arabic', () => {
-
+    it('convert from roman to arabic', () => {
+      expect(converter.convert('I')).to.be.equal(1);
+      expect(converter.convert('II')).to.be.equal(2);
+      expect(converter.convert('IV')).to.be.equal(4);
+      expect(converter.convert('V')).to.be.equal(5);
+      expect(converter.convert('IX')).to.be.equal(9);
+      expect(converter.convert('X')).to.be.equal(10);
+      expect(converter.convert('MMXVIII')).to.be.equal(2018);
+      expect(converter.convert('MMMCMXCIX')).to.be.equal(3999);
+      expect(() => converter.convert(null)).to.throw(NOT_A_VALID_ROMAN_GLYPH);
+      expect(() => converter.convert(undefined)).to.throw(NOT_A_VALID_ROMAN_GLYPH);
+      expect(() => converter.convert('')).to.throw(NOT_A_VALID_ROMAN_GLYPH);
+      expect(() => converter.convert('IXAA')).to.throw(NOT_A_VALID_ROMAN_GLYPH);
+    });
   });
 });
