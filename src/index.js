@@ -17,7 +17,40 @@ const ROMAN_GLYPHS = [
 
 class RomanNumeralConverter {
   convert (value) {
+    if (typeof value === 'string') {
+      return this.romanToArabic(value);
+    }
+    return this.arabicToRoman(value);
+  }
 
+  arabicToRoman (value) {
+    var roman = '';
+
+    if (value <= 0 || value > 3999) {
+      throw new Error('Value should be greater than 0 or less than 3999');
+    }
+
+    ROMAN_GLYPHS.forEach(([num, sym,]) => {
+      while (value >= num) {
+        roman += sym;
+        value -= num;
+      }
+    });
+
+    return roman;
+  }
+
+  romanToArabic (value) {
+    var arabic = 0;
+  
+    ROMAN_GLYPHS.forEach(([num, sym,]) => {
+      while (value.indexOf(sym) === 0) {
+        arabic += num;
+        value = value.replace(sym, '');
+      }
+    });
+
+    return arabic; 
   }
 }
 export default RomanNumeralConverter;
