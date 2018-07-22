@@ -30,6 +30,8 @@ describe('RomanNumerals', () => {
       expect(converter.convert(20)).to.be.equal('XX');
       expect(converter.convert(1986)).to.be.equal('MCMLXXXVI');
       expect(() => converter.convert(4000)).to.be.throw(Error);
+      expect(() => converter.convert(0)).to.be.throw(Error);
+      expect(() => converter.convert(-100)).to.be.throw(Error);
     });
   });
 
@@ -42,6 +44,7 @@ describe('RomanNumerals', () => {
       expect(converter.convert('IX')).to.be.equal(9);
       expect(converter.convert('XX')).to.be.equal(20);
       expect(converter.convert('MCMLXXXVI')).to.be.equal(1986);
+      // expect(() => converter.convert('anyotherstring')).to.be.throw(Error);
     });
   });
 });
