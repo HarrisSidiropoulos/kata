@@ -42,15 +42,29 @@ class RomanNumeralConverter {
 
   romanToArabic (value) {
     var arabic = 0;
-  
-    ROMAN_GLYPHS.forEach(([num, sym,]) => {
-      while (value.indexOf(sym) === 0) {
-        arabic += num;
-        value = value.replace(sym, '');
-      }
-    });
 
-    return arabic; 
+    if (this.isValidRoman (value)) {
+      ROMAN_GLYPHS.forEach(([num, sym,]) => {
+        while (value.indexOf(sym) === 0) {
+          arabic += num;
+          value = value.replace(sym, '');
+        }
+      });
+
+      return arabic;
+    } else {
+      throw new Error('Please give a correct roman value');
+    }
   }
+  
+  isValidRoman (value) {
+    var substring =  ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I',];
+    const compare = value.split('');
+    if (compare.every(el => substring.includes(el))) {
+      return true;
+    } else {
+      return false;
+    }
+  }  
 }
 export default RomanNumeralConverter;

@@ -44,7 +44,7 @@ describe('RomanNumerals', () => {
       expect(converter.convert('IX')).to.be.equal(9);
       expect(converter.convert('XX')).to.be.equal(20);
       expect(converter.convert('MCMLXXXVI')).to.be.equal(1986);
-      // expect(() => converter.convert('anyotherstring')).to.be.throw(Error);
+      expect(() => converter.convert('anyotherstring')).to.be.throw(Error);
     });
   });
 });
