@@ -15,56 +15,51 @@ const ROMAN_GLYPHS = [
   [1, 'I',],
 ];
 
-class RomanNumeralConverter {
-  convert (value) {
-    if (typeof value === 'string') {
-      return this.romanToArabic(value);
-    }
-    return this.arabicToRoman(value);
+const arabicToRoman = value => {
+  var roman = '';
+
+  if (value <= 0 || value > 3999) {
+    throw new Error('Value should be greater than 0 or less than 3999');
   }
 
-  arabicToRoman (value) {
-    var roman = '';
-
-    if (value <= 0 || value > 3999) {
-      throw new Error('Value should be greater than 0 or less than 3999');
+  ROMAN_GLYPHS.forEach(([num, sym,]) => {
+    while (value >= num) {
+      roman += sym;
+      value -= num;
     }
+  });
 
+  return roman;
+};
+
+const romanToArabic = value => {
+  var arabic = 0;
+
+  if (isValidRoman (value)) {
     ROMAN_GLYPHS.forEach(([num, sym,]) => {
-      while (value >= num) {
-        roman += sym;
-        value -= num;
+      while (value.indexOf(sym) === 0) {
+        arabic += num;
+        value = value.replace(sym, '');
       }
     });
 
-    return roman;
+    return arabic;
+  } else {
+    throw new Error('Please give a correct roman value');
   }
+};
 
-  romanToArabic (value) {
-    var arabic = 0;
-
-    if (this.isValidRoman (value)) {
-      ROMAN_GLYPHS.forEach(([num, sym,]) => {
-        while (value.indexOf(sym) === 0) {
-          arabic += num;
-          value = value.replace(sym, '');
-        }
-      });
-
-      return arabic;
-    } else {
-      throw new Error('Please give a correct roman value');
+const isValidRoman = value => {
+  var substring =  ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I',];
+  const compare = value.split('');
+  return compare.every(el => substring.includes(el));
+};  
+class RomanNumeralConverter {
+  convert (value) {
+    if (typeof value === 'string') {
+      return romanToArabic(value);
     }
+    return arabicToRoman(value);
   }
-  
-  isValidRoman (value) {
-    var substring =  ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I',];
-    const compare = value.split('');
-    if (compare.every(el => substring.includes(el))) {
-      return true;
-    } else {
-      return false;
-    }
-  }  
 }
 export default RomanNumeralConverter;
