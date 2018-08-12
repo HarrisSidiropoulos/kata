@@ -13,3 +13,21 @@ Modern Roman numerals are written by expressing each decimal digit of the number
 http://chaijs.com/api/bdd/
 
 http://www.calculateme.com/cRomanNumerals/RomanNumeralsToArabic.htm
+
+``` javascript
+const ROMAN_GLYPHS = [
+  [1000, 'M',],
+  [900, 'CM',],
+  [500, 'D',],
+  [400, 'CD',],
+  [100, 'C',],
+  [90, 'XC',],
+  [50, 'L',],
+  [40, 'XL',],
+  [10, 'X',],
+  [9, 'IX',],
+  [5, 'V',],
+  [4, 'IV',],
+  [1, 'I',],
+];
+```
